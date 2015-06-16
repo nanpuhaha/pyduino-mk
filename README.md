@@ -50,7 +50,7 @@ Instantiating the `Arduino` class is simple and easy.
 arduino = Arduino()
 ```
 
-PyDuino-MK automatically detects and establishes a connection with the serial port that the Arduino device resides on. But if for any reason PyDuino-MK is unable to do so, a port can be explicitly provided in an optional parameter.
+PyDuino-MK automatically detects and establishes a connection with the serial port that the Arduino device resides on. But if for any reason PyDuino-MK is unable to do so, a port can be explicitly provided as an optional parameter.
 
 ```python
 arduino = Arduino(port='COM5')  # Windows example
@@ -64,28 +64,26 @@ arduino = Arduino(port='/dev/tty.usbmodemfa141')  # OSX example
 arduino = Arduino(port='/dev/ttyS2')  # Linux example
 ```
 
-*Keep in mind that all of the Arduino modules are* **blocking** *until the Arduino device has completed the action. For example, calling `move(destination)` will cause the Python script to hang until the Arduino has moved the cursor to the destination.*
-
 ## Moving the Mouse
-PyDuino-MK provides a couple of functions for moving the mouse from one location to another. These functions take two arguments that represent a Cartesian coordinate. A coordinate system where the top-left of the screen represents the origin, `(0, 0)`, such that pixel coordinates increase in the right and down directions is assumed.
+PyDuino-MK provides a couple of modules for moving the mouse from one location to another. These modules take two arguments that represent a Cartesian coordinate. A coordinate system where the top-left of the screen represents the origin, `(0, 0)`, such that pixel coordinates increase in the right and down directions is assumed.
 
 ```python
 # Calling this module will move the mouse from the current mouse position to 
-# the specified mouse position in a linear motion.
+# a specified mouse position in a linear motion.
 arduino.move(300, 300)
 ```
 ![besenham](https://cloud.githubusercontent.com/assets/10904556/8178406/a19b4b9c-13c2-11e5-847e-b364a73d7445.gif)
 
 ```python
 # Calling this module will move the mouse from the current mouse position to 
-# the specified mouse position in a cubic bezier motion. This module generates
+# a specified mouse position in a cubic bezier motion. This module generates
 # two random control points every call to vary the mouse paths.
 arduino.bezier_move(300, 300)
 ```
 ![bezier](https://cloud.githubusercontent.com/assets/10904556/8178416/b67bfdae-13c2-11e5-9a39-234df8d34675.gif)
 
 ## Clicking the Mouse
-To click using the mouse, call the `click(button)` module. This module holds down the designated button for a random interval between 50-100ms before releasing the button. Make sure that the mouse/keyboard constants have been imported in the Python script.
+To click using the mouse, call the `click(button)` module. This module holds down the designated button for a random interval between 50-100ms and then releases the button to resemble a human-like click motion.
 
 All of the click modules have the default parameter value, `MOUSE_LEFT`.
 
@@ -105,7 +103,7 @@ arduino.click(MOUSE_MIDDLE)
 arduino.click(MOUSE_RIGHT)
 ```
 
-To click without holding the mouse button down for a brief moment, use the `fast_click(button)` module.
+To click without briefly holding the mouse button down, use the `fast_click(button)` module.
 
 ```python
 # Auto-click very quickly
@@ -113,7 +111,7 @@ while True:
 	arduino.fast_click(MOUSE_LEFT)
 ```
 
-You can use the `press(button)` and `release(button)` modules to hold down a mouse button and release it on command.
+Use the `press(button)` and `release(button)` modules to hold down a mouse button and release it on command.
 
 ```python
 import time
@@ -136,13 +134,13 @@ To send a character or a string **as a single keystroke**, use the `write(charac
 
 All keyboard modules will work **only** with ASCII characters that correspond to a key on the keyboard. With the exception of backspace, passing the ASCII codes for non-printable characters as arguments will produce undefined results.
 
-However, modifier keys (such as Ctrl, Shift, Alt) may be passed as parameters. The modifier key constants are available and can be imported from `pyduino_mk.constants`. The names of the constants are identical to the [Arduino keyboard modifiers](http://www.arduino.cc/en/Reference/KeyboardModifiers). The only difference is that the constants omit the `KEY_` prefix. `KEY_LEFT_CTRL` becomes `LEFT_CTRL`, `KEY_CAPS_LOCK` becomes `CAPS_LOCK`, and so on.
+However, modifier keys (such as Ctrl, Shift, Alt) may be passed as arguments. The modifier key constants are available and can be imported from `pyduino_mk.constants`. The names of the constants are almost identical to the [Arduino keyboard modifiers](http://www.arduino.cc/en/Reference/KeyboardModifiers). The only difference is that the constants omit the `KEY_` prefix. `KEY_LEFT_CTRL` becomes `LEFT_CTRL`, `KEY_CAPS_LOCK` becomes `CAPS_LOCK`, and so on.
 
 ```python
 # Write the letter 'A' in two ways. A character or an integer ordinal 
 # representing the character can be used as an argument.
-arduino.write(65)
 arduino.write('A')
+arduino.write(65)
 ```
 
 ```python
@@ -161,7 +159,7 @@ arduino.releaseAll()
 ```
 
 ## Realistic Human Typing
-One of the extended keyboard functionality provided by PyDuino-MK is human typing emulation. This is available through the `type(string)` module. By default, the module will type at a rate of 80 wpm with mistakes at 96% accuracy. If mistakes occur, the Arduino will pause for a brief moment and correct the mistake.
+Instead of writing messages as a single keystroke, messages may also be sent as a series of keystrokes. One of the extended keyboard functionality provided by PyDuino-MK is human typing emulation. This is available through the `type(string)` module. By default, the module will type at a rate of 80 wpm at 96% accuracy. If mistakes occur, the Arduino will pause for a brief moment and correct the mistake. Mistakes may be disabled for 100% accuracy if desired.
 
 ```python
 # 80 wpm with 85% accuracy
@@ -173,7 +171,10 @@ arduino.type('https://github.com/nelsontran/PyDuino-MK/', accuracy=85)
 ### Optional parameters
 * `wpm` (int) - words per minute (assuming 5 characters per word) **without** taking mistakes into account.
 * `mistakes` (bool) - True/False value that determines whether to make mistakes or not.
-* `accuracy` (int) - Value between 1 and 100, representing a percentage, that determines that typing accuracy.
+* `accuracy` (int) - Value between 1 and 100, representing a percentage, that determines typing accuracy.
+
+# Notes
+Keep in mind that all of the Arduino modules are blocking until the Arduino device has completed the action. For example, calling `move(destination)` will cause the Python script to hang until the Arduino has finished moving the cursor to the destination. If you call `type()` with a long message and a slow WPM with low accuracy, expect to wait a while for the call to finish.
 
 # License
 PyDuino-MK is licensed under the MIT License (see `LICENSE` for details).
