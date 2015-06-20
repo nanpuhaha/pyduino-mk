@@ -177,7 +177,7 @@ class Arduino(object):
 			raise ValueError('Not a valid mouse button.')
 
 		self.__write_byte(MOUSE_CMD)
-		self.__write_byte(MOUSE_HUMAN_CLICK)
+		self.__write_byte(MOUSE_CLICK)
 		self.__write_byte(button)
 
 		self.__command_complete.wait()
@@ -187,7 +187,7 @@ class Arduino(object):
 			raise ValueError('Not a valid mouse button.')
 
 		self.__write_byte(MOUSE_CMD)
-		self.__write_byte(MOUSE_CLICK)
+		self.__write_byte(MOUSE_FAST_CLICK)
 		self.__write_byte(button)
 
 		self.__command_complete.wait()
