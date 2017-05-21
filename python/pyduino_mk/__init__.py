@@ -20,5 +20,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from constants import *
-from arduino import Arduino
+from .constants import *
+from .arduino import Arduino

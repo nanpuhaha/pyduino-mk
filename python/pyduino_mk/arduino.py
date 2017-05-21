@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from constants import *
+from .constants import *
 import serial.tools.list_ports
 import threading
-import Tkinter
+import tkinter
 import serial
 import struct
 import glob
@@ -60,7 +60,7 @@ class Arduino(object):
 			raise serial.SerialException('Arduino device not found.')
 
 		# used to get mouse position and screen dimensions
-		self.__tk = Tkinter.Tk()
+		self.__tk = tkinter.Tk()
 
 		# this flag denoting whether a command is has been completed
 		# all module calls are blocking until the Arduino command is complete
