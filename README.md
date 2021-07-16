@@ -1,10 +1,10 @@
 # PyDuino-MK
-A simple Python API that interacts (via serial communication) with Arduino devices for USB mouse and keyboard emulation. It is compatible with all Arduino devices (Leonardo, Micro, etc.) that support the Arduino Mouse/Keyboard libraries.
+A simple Python API that interacts (via serial communication) with Arduino devices for USB mouse and keyboard emulation. It is compatible with all Arduino devices (Leonardo, Micro, etc.) that support the [Arduino Mouse/Keyboard libraries](https://www.arduino.cc/en/Reference.MouseKeyboard).
 
-![architecture](https://cloud.githubusercontent.com/assets/10904556/8175573/34c2cbec-13a1-11e5-8274-ab77e87a1164.PNG)
+![architecture](https://user-images.githubusercontent.com/9074297/125924396-2fe57b34-b02a-4284-9c0b-880d6162bcb3.png)
 
 # Features
-* Simple Python 2.7 API
+* Simple Python 3 API
 * Absolute Mouse Positioning
 * Vanilla Arduino (w/o HID modifications)
 * Extended mouse and keyboard functions
@@ -12,10 +12,18 @@ A simple Python API that interacts (via serial communication) with Arduino devic
 * Human-like keyboard typing
 
 # Requirements
-* [Python 2.7.x](https://www.python.org/) (does not currently work with Python 3.x)
-* [PySerial 2.7](http://pyserial.sourceforge.net/)
-* [Arduino IDE 1.6+](http://www.arduino.cc/en/Main/Software)
-* A compatible Arduino device
+* [Python 3.x](https://www.python.org/)
+* [PySerial 3.5](https://github.com/pyserial/pyserial)
+* [Arduino IDE 1.8.15+](https://www.arduino.cc/en/software)
+* A compatible Arduino device that support the [Arduino Mouse/Keyboard libraries](https://www.arduino.cc/en/Reference.MouseKeyboard)
+
+Model | Image
+-------|---------------
+[Arduino Leonardo](https://www.arduino.cc/en/Main/Arduino_BoardLeonardo) | <img src="https://store-cdn.arduino.cc/usa/catalog/product/cache/1/image/1040x660/604a3538c15e081937dbfbd20aa60aad/A/0/A000057_featured_2.jpg" width="200"> <img src="https://store-cdn.arduino.cc/usa/catalog/product/cache/1/image/1040x660/604a3538c15e081937dbfbd20aa60aad/a/0/a000052_featured_1.jpg" width="200">
+[Arduino Micro](https://store.arduino.cc/usa/arduino-micro) | <img src="https://store-cdn.arduino.cc/usa/catalog/product/cache/1/small_image/1120x/54a39ccf936f55cfda55ed856d76c198/a/0/a000053_00.default.jpg" width="200"> <img src="https://store-cdn.arduino.cc/usa/catalog/product/cache/1/small_image/1120x/54a39ccf936f55cfda55ed856d76c198/a/0/a000093_00.default.jpg" width="200"> 
+Arduino Pro Micro | <img src="https://user-images.githubusercontent.com/9074297/125921786-76f72ce0-8ff6-4ed5-a467-051984a0d3c2.jpg" width="200"> 
+Others | <img src="https://user-images.githubusercontent.com/9074297/125922957-6b54ec8a-58d9-413a-98ea-304927c42dc3.jpg" width="90"> <img src="https://user-images.githubusercontent.com/9074297/125923025-ca5cabfb-31fa-4120-bd3c-73feb1ca0d9b.png" width="90"> <img src="https://user-images.githubusercontent.com/9074297/125923045-4ffcf3b5-2466-4f94-8ad6-1d3a1013a7bd.jpg" width="90"> <img src="https://user-images.githubusercontent.com/9074297/125923038-15102cd5-9d55-451e-8587-c0cc80440392.jpg" width="90"> 
+
 
 # Installation
 To install PyDuino-MK from the PyPI repository, run the following from a command line:
