@@ -22,6 +22,7 @@
 
 #include <Arduino.h>
 #include "mouse.h"
+#include <Mouse.h>
 
 Point SCREEN_DIMENSIONS;
 Point MOUSE_POSITION;

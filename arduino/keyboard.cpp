@@ -22,6 +22,7 @@
 
 #include <Arduino.h>
 #include "keyboard.h"
+#include <Keyboard.h>
 
 void parseKeyboardCommand()
 {

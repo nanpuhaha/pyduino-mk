@@ -22,6 +22,8 @@
 
 #include "mouse.h"
 #include "keyboard.h"
+#include <Mouse.h>
+#include <Keyboard.h>
 
 void setup()
 {
