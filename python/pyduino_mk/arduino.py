@@ -130,12 +130,10 @@ class Arduino(object):
             if not endl:
                 self.__write_byte(KEYBOARD_CMD)
                 self.__write_byte(KEYBOARD_PRINT)
-                self.__write_str(keys)
             else:
                 self.__write_byte(KEYBOARD_CMD)
                 self.__write_byte(KEYBOARD_PRINTLN)
-                self.__write_str(keys)
-
+            self.__write_str(keys)
         else:
             raise ValueError(
                 "Not a valid keyboard keystroke. "
